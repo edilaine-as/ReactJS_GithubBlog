@@ -33,4 +33,4 @@ export const mixins = {
             font-size: 1.5rem;
         `,
     }
-} as const
+}

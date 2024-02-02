@@ -36,4 +36,8 @@ export const CardContainer = styled.div`
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+
+    &:hover{
+        border: 2px solid ${props => props.theme["base-label"]};
+    }
 `

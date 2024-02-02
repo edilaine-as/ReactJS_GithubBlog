@@ -1,5 +1,6 @@
-import { HomeContainer, InfoProfile, ProfileContainer, ProfileContent } from "./styles";
+import { HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
 import Avatar from '../../../public/images/avatar.svg';
+import { Card } from "../../components/Card";
 
 export function Home(){
     return (
@@ -22,6 +23,16 @@ export function Home(){
                     </InfoProfile>
                 </ProfileContent>
             </ProfileContainer>
+
+            <SearchContainer>
+                <div>
+                    <h3>Publicações</h3>
+                    <span>6 Publicações</span>
+                </div>
+                <input type="text" placeholder="Buscar conteúdo" />
+            </SearchContainer>
+
+            <Card/>
         </HomeContainer>
     )
 }
