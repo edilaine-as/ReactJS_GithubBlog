@@ -3,6 +3,7 @@ import { mixins } from "../../styles/mixins";
 
 export const HomeContainer = styled.main`
     margin: 0 auto;
+    margin-bottom: 12rem;
     max-width: 54rem;
 `
 
