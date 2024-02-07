@@ -5,6 +5,7 @@ interface Issue {
     id: number;
     title: string;
     body: string;
+    html_url: string;
     created_at: string;
 }
 
@@ -38,6 +39,7 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
                 id: itemResponse.id,
                 title: itemResponse.title,
                 body: itemResponse.body,
+                html_url: itemResponse.html_url,
                 created_at: itemResponse.created_at,
             }));
 

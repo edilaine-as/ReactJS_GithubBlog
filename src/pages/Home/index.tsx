@@ -3,7 +3,6 @@ import { Card } from "../../components/Card";
 import { useContext, useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import { Link } from "react-router-dom";
-import { Header } from "../../components/Header";
 import { IssuesContext } from "../../contexts/IssuesContext";
 
 interface Profile {
@@ -56,7 +55,7 @@ export function Home(){
                 <ProfileContent>
                     <HeaderProfile>
                         <h1>{profile?.name}</h1>
-                        <Link to={profile?.html_url ?? '/'} target="_blank">GITHUB</Link>
+                        <Link to={profile?.html_url ?? '/'} target="_blank">GitHub</Link>
                     </HeaderProfile>
 
                     <p>{profile?.bio}</p>

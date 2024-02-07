@@ -5,6 +5,7 @@ import { defaultTheme } from "./styles/themes/default";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { IssuesProvider } from "./contexts/IssuesContext";
 import { DefaultLayout } from "./layouts/DefaultLayout";
+import { Issues } from "./pages/Issues";
 
 export function App(){
 
@@ -14,7 +15,8 @@ export function App(){
           <IssuesProvider>
             <Routes>
               <Route path="/" element={<DefaultLayout/>}>
-                <Route path="/" element={<Home />}/>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/post/:id" element={<Issues />}/>
               </Route>
             </Routes>
           </IssuesProvider>

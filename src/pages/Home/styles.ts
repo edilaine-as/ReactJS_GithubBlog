@@ -41,6 +41,7 @@ export const HeaderProfile = styled.div`
     }
 
     a{
+        text-transform: uppercase;
         text-decoration: none;
         color: ${props => props.theme.blue};
         ${mixins.fonts.link};
