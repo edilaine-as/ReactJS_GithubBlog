@@ -17,6 +17,12 @@ export const ProfileContainer = styled.div`
     width: 54rem;
     padding: 2rem 2.5rem;
 
+    img#profile{
+        height: 148px;
+        width: 148px;
+        border-radius: 8px;
+    }
+
 `
 
 export const ProfileContent = styled.div`
