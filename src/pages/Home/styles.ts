@@ -18,8 +18,8 @@ export const ProfileContainer = styled.div`
     padding: 2rem 2.5rem;
 
     img#profile{
-        height: 148px;
-        width: 148px;
+        height: 9.25rem;
+        width: 9.25rem;
         border-radius: 8px;
     }
 
@@ -81,4 +81,10 @@ export const SearchContainer = styled.div`
         }
     }
 
+`
+
+export const CardContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
 `

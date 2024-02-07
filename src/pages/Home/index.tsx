@@ -1,4 +1,4 @@
-import { HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
+import { CardContainer, HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
 import { Card } from "../../components/Card";
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
@@ -64,7 +64,12 @@ export function Home(){
                 <input type="text" placeholder="Buscar conteúdo" />
             </SearchContainer>
 
-            <Card/>
+            <CardContainer>
+                <Card/>
+                <Card/>
+                <Card/>
+                <Card/>
+            </CardContainer>
         </HomeContainer>
     )
 }
