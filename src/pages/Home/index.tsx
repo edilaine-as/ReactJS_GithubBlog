@@ -13,9 +13,18 @@ interface Profile {
     followers: number;
 }
 
+interface Card {
+    id: number;
+    title: string;
+    body: string;
+    created_at: string;
+}
+
 export function Home(){
     const [profile, setProfile] = useState<Profile>();
-
+    const [cards, setCards] = useState<Card[]>([]);
+    const [totalPosts, setTotalPosts] = useState(0);
+    
     async function fetchProfile(){
         await api.get('users/josepholiveira')
         .then(response => {
@@ -31,8 +40,31 @@ export function Home(){
         })
     }
     
+    async function fetchIssuesRepository(){
+        await api.get('search/issues', {
+            params: {
+                q: 'repo:daltonmenezes/test'
+            }
+        })
+        .then(response => {
+            setTotalPosts(response.data.total_count);
+
+            const newCards = response.data.items.map((itemResponse: Card) => ({
+                id: itemResponse.id,
+                title: itemResponse.title,
+                body: itemResponse.body,
+                created_at: itemResponse.created_at,
+            }));
+
+            setCards(newCards);
+              
+        })
+    }
+    
     useEffect(() => {
-        fetchProfile()
+        fetchProfile();
+        fetchIssuesRepository();
+
     }, [])
 
     return (
@@ -59,16 +91,15 @@ export function Home(){
             <SearchContainer>
                 <div>
                     <h3>Publicações</h3>
-                    <span>6 Publicações</span>
+                    <span>{totalPosts} Publicações</span>
                 </div>
                 <input type="text" placeholder="Buscar conteúdo" />
             </SearchContainer>
 
             <CardContainer>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
+                {cards.map((card) => (
+                    <Card key={card.id} post={card}/>
+                ))}
             </CardContainer>
         </HomeContainer>
     )
