@@ -26,14 +26,24 @@ export const ProfileContainer = styled.div`
 `
 
 export const ProfileContent = styled.div`
+    p{
+        margin-bottom: 1.5rem;
+    }
+`
+
+export const HeaderProfile = styled.div`
+    display: flex;
+    justify-content: space-between;
 
     h1{
         ${mixins.fonts.titleL};
         margin-bottom: 0.5rem;
     }
 
-    p{
-        margin-bottom: 1.5rem;
+    a{
+        text-decoration: none;
+        color: ${props => props.theme.blue};
+        ${mixins.fonts.link};
     }
 `
 

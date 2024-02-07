@@ -1,7 +1,9 @@
-import { CardContainer, HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
+import { CardContainer, HeaderProfile, HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
 import { Card } from "../../components/Card";
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
+import { Link } from "react-router-dom";
+import { Header } from "../../components/Header";
 
 interface Profile {
     id: number;
@@ -11,6 +13,7 @@ interface Profile {
     login: string;
     company: string;
     followers: number;
+    html_url: string;
 }
 
 interface Card {
@@ -36,6 +39,7 @@ export function Home(){
                 login: response.data.login,
                 company: response.data.company,
                 followers: response.data.followers,
+                html_url: response.data.html_url,
             });
         })
     }
@@ -68,39 +72,47 @@ export function Home(){
     }, [])
 
     return (
-        <HomeContainer>
-            <ProfileContainer>
-                <img id="profile" src={profile?.avatar_url} alt="" />
-                <ProfileContent>
-                    <h1>{profile?.name}</h1>
-                    <p>{profile?.bio}</p>
-                    <InfoProfile>
-                        <div>
-                            <span>{profile?.login}</span>
-                        </div>
-                        <div>
-                            <span>{profile?.company}</span>
-                        </div>
-                        <div>
-                            <span>{profile?.followers} seguidores</span>
-                        </div>
-                    </InfoProfile>
-                </ProfileContent>
-            </ProfileContainer>
+        <>
+            <Header/>
+            <HomeContainer>
+                <ProfileContainer>
+                    <img id="profile" src={profile?.avatar_url} alt="" />
+                    <ProfileContent>
+                        <HeaderProfile>
+                            <h1>{profile?.name}</h1>
+                            <Link to={profile?.html_url ?? '/'} target="_blank">GITHUB</Link>
+                        </HeaderProfile>
 
-            <SearchContainer>
-                <div>
-                    <h3>Publicações</h3>
-                    <span>{totalPosts} Publicações</span>
-                </div>
-                <input type="text" placeholder="Buscar conteúdo" />
-            </SearchContainer>
+                        <p>{profile?.bio}</p>
 
-            <CardContainer>
-                {cards.map((card) => (
-                    <Card key={card.id} post={card}/>
-                ))}
-            </CardContainer>
-        </HomeContainer>
+                        <InfoProfile>
+                            <div>
+                                <span>{profile?.login}</span>
+                            </div>
+                            <div>
+                                <span>{profile?.company}</span>
+                            </div>
+                            <div>
+                                <span>{profile?.followers} seguidores</span>
+                            </div>
+                        </InfoProfile>
+                    </ProfileContent>
+                </ProfileContainer>
+
+                <SearchContainer>
+                    <div>
+                        <h3>Publicações</h3>
+                        <span>{totalPosts} Publicações</span>
+                    </div>
+                    <input type="text" placeholder="Buscar conteúdo" />
+                </SearchContainer>
+
+                <CardContainer>
+                    {cards.map((card) => (
+                        <Card key={card.id} post={card}/>
+                    ))}
+                </CardContainer>
+            </HomeContainer>
+        </>
     )
 }
