@@ -4,6 +4,7 @@ import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/default";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { IssuesProvider } from "./contexts/IssuesContext";
+import { DefaultLayout } from "./layouts/DefaultLayout";
 
 export function App(){
 
@@ -12,7 +13,9 @@ export function App(){
         <BrowserRouter>
           <IssuesProvider>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<DefaultLayout/>}>
+                <Route path="/" element={<Home />}/>
+              </Route>
             </Routes>
           </IssuesProvider>
         </BrowserRouter>

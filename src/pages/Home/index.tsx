@@ -50,47 +50,44 @@ export function Home(){
     }, [])
 
     return (
-        <>
-            <Header/>
-            <HomeContainer>
-                <ProfileContainer>
-                    <img id="profile" src={profile?.avatar_url} alt="" />
-                    <ProfileContent>
-                        <HeaderProfile>
-                            <h1>{profile?.name}</h1>
-                            <Link to={profile?.html_url ?? '/'} target="_blank">GITHUB</Link>
-                        </HeaderProfile>
+        <HomeContainer>
+            <ProfileContainer>
+                <img id="profile" src={profile?.avatar_url} alt="" />
+                <ProfileContent>
+                    <HeaderProfile>
+                        <h1>{profile?.name}</h1>
+                        <Link to={profile?.html_url ?? '/'} target="_blank">GITHUB</Link>
+                    </HeaderProfile>
 
-                        <p>{profile?.bio}</p>
+                    <p>{profile?.bio}</p>
 
-                        <InfoProfile>
-                            <div>
-                                <span>{profile?.login}</span>
-                            </div>
-                            <div>
-                                <span>{profile?.company}</span>
-                            </div>
-                            <div>
-                                <span>{profile?.followers} seguidores</span>
-                            </div>
-                        </InfoProfile>
-                    </ProfileContent>
-                </ProfileContainer>
+                    <InfoProfile>
+                        <div>
+                            <span>{profile?.login}</span>
+                        </div>
+                        <div>
+                            <span>{profile?.company}</span>
+                        </div>
+                        <div>
+                            <span>{profile?.followers} seguidores</span>
+                        </div>
+                    </InfoProfile>
+                </ProfileContent>
+            </ProfileContainer>
 
-                <SearchContainer>
-                    <div>
-                        <h3>Publicações</h3>
-                        <span>{totalPosts} Publicações</span>
-                    </div>
-                    <input type="text" placeholder="Buscar conteúdo" />
-                </SearchContainer>
+            <SearchContainer>
+                <div>
+                    <h3>Publicações</h3>
+                    <span>{totalPosts} Publicações</span>
+                </div>
+                <input type="text" placeholder="Buscar conteúdo" />
+            </SearchContainer>
 
-                <CardContainer>
-                    {issues.map((issue) => (
-                        <Card key={issue.id} issue={issue}/>
-                    ))}
-                </CardContainer>
-            </HomeContainer>
-        </>
+            <CardContainer>
+                {issues.map((issue) => (
+                    <Card key={issue.id} issue={issue}/>
+                ))}
+            </CardContainer>
+        </HomeContainer>
     )
 }
