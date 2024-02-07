@@ -1,9 +1,10 @@
 import { CardContainer, HeaderProfile, HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
 import { Card } from "../../components/Card";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
+import { IssuesContext } from "../../contexts/IssuesContext";
 
 interface Profile {
     id: number;
@@ -25,8 +26,7 @@ interface Card {
 
 export function Home(){
     const [profile, setProfile] = useState<Profile>();
-    const [cards, setCards] = useState<Card[]>([]);
-    const [totalPosts, setTotalPosts] = useState(0);
+    const {issues, totalPosts} = useContext(IssuesContext)
     
     async function fetchProfile(){
         await api.get('users/josepholiveira')
@@ -44,30 +44,8 @@ export function Home(){
         })
     }
     
-    async function fetchIssuesRepository(){
-        await api.get('search/issues', {
-            params: {
-                q: 'repo:daltonmenezes/test'
-            }
-        })
-        .then(response => {
-            setTotalPosts(response.data.total_count);
-
-            const newCards = response.data.items.map((itemResponse: Card) => ({
-                id: itemResponse.id,
-                title: itemResponse.title,
-                body: itemResponse.body,
-                created_at: itemResponse.created_at,
-            }));
-
-            setCards(newCards);
-              
-        })
-    }
-    
     useEffect(() => {
         fetchProfile();
-        fetchIssuesRepository();
 
     }, [])
 
@@ -108,8 +86,8 @@ export function Home(){
                 </SearchContainer>
 
                 <CardContainer>
-                    {cards.map((card) => (
-                        <Card key={card.id} post={card}/>
+                    {issues.map((issue) => (
+                        <Card key={issue.id} issue={issue}/>
                     ))}
                 </CardContainer>
             </HomeContainer>

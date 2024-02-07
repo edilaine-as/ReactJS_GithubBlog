@@ -1,7 +1,7 @@
 import { CardContainer } from "./styles";
 
 type Props = {
-    post: {
+    issue: {
       id: number
       title: string
       body: string
@@ -9,15 +9,15 @@ type Props = {
     }
   }
 
-export function Card({ post }: Props){
+export function Card({ issue }: Props){
     return(
         <CardContainer>
             <div>
-                <h2>{post.title}</h2>
+                <h2>{issue.title}</h2>
                 <span>Há 1 dia</span>
             </div>
             <p>
-            {post.body}
+            {issue.body}
             </p>
         </CardContainer>
     )
