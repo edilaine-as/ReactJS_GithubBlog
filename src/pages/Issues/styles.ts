@@ -13,6 +13,7 @@ export const PostContainer = styled.div`
 
     width: 54rem;
     padding: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
 
     h2{
         margin: 20px 0px 8px 0px;
