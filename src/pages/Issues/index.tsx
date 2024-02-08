@@ -1,15 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IssuesContext } from "../../contexts/IssuesContext";
 import { InfoPost, IssuesContainer, PostContainer, PostHeader } from "./styles";
 import { useParams } from 'react-router-dom';
 
 export function Issues(){
-    const { issues } = useContext(IssuesContext)
-    const { id } = useParams();
-    const selectedIssueId = id ? parseInt(id) : null;
+    
+    const { issues, differenceBetweenDates } = useContext(IssuesContext)
+    
+    const [now, setNow] = useState(new Date());
 
+    const { id } = useParams(); 
+    const selectedIssueId = id ? parseInt(id) : null;
     const selectedIssue = issues.find((issue) => issue.id === selectedIssueId);
+
+    //a data atual é atualizada a cada 30s
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNow(new Date());
+        }, 30000);
+      
+        return () => clearInterval(interval);
+    }, [])
 
     return (
         <IssuesContainer>
@@ -21,16 +33,20 @@ export function Issues(){
                 <h2>{selectedIssue?.title}</h2>
                 <InfoPost>
                     <div>
-                        usuario
+                        {selectedIssue?.user?.login}
                     </div>
                     <div>
-                        Há 1 dia
+                        {differenceBetweenDates(now, new Date(selectedIssue == null? new Date() : selectedIssue?.created_at))}
                     </div>
                     <div>
-                        5 comentários
+                        {selectedIssue?.comments} comentários
                     </div>
                 </InfoPost>
             </PostContainer>
+
+            <div>
+                {selectedIssue?.body}
+            </div>
         </IssuesContainer>
     )
 }

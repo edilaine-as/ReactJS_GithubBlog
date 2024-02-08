@@ -3,10 +3,13 @@ import { CardContainer } from "./styles";
 
 type Props = {
     issue: {
-      id: number
-      title: string
-      body: string
-      created_at: string
+        id: number;
+        title: string;
+        body: string;
+        html_url: string;
+        created_at: Date;
+        comments: number;
+        login: string;
     }
   }
 
