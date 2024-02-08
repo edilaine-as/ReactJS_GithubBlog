@@ -4,6 +4,7 @@ import { IssuesContext } from "../../contexts/IssuesContext";
 import { InfoPost, IssuesContainer, PostContainer, PostHeader } from "./styles";
 import { useParams } from 'react-router-dom';
 import { differenceBetweenDates } from "../../utils/differenceBetweenDates";
+import ReactMarkdown from 'react-markdown'
 
 export function Issues(){
     
@@ -45,9 +46,9 @@ export function Issues(){
                 </InfoPost>
             </PostContainer>
 
-            <div>
+            <ReactMarkdown>
                 {selectedIssue?.body}
-            </div>
+            </ReactMarkdown>
         </IssuesContainer>
     )
 }
