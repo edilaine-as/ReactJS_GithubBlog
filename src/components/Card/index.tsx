@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { differenceBetweenDates } from "../../utils/differenceBetweenDates";
 import { CardContainer } from "./styles";
 
 type Props = {
@@ -9,25 +11,37 @@ type Props = {
         html_url: string;
         created_at: Date;
         comments: number;
-        login: string;
+        user: {
+            login: string;
+        }
     }
   }
 
 export function Card({ issue }: Props){
+    const [now, setNow] = useState(new Date());
     const navigate = useNavigate()
 
     const handleClick = () => {
         navigate(`/post/${issue.id}`)
     }
 
+    useEffect(() => {
+        //a data atual é atualizada a cada 30s
+        const interval = setInterval(() => {
+            setNow(new Date());
+        }, 30000);
+      
+        return () => clearInterval(interval);
+    }, [])
+
     return(
         <CardContainer onClick={handleClick}>
             <div>
                 <h2>{issue.title}</h2>
-                <span>Há 1 dia</span>
+                <span>{differenceBetweenDates(now, new Date(issue.created_at))}</span>
             </div>
             <p>
-            {issue.body}
+                {issue.body}
             </p>
         </CardContainer>
     )

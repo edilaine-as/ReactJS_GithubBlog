@@ -45,7 +45,6 @@ export function Home(){
     
     useEffect(() => {
         fetchProfile();
-
     }, [])
 
     return (

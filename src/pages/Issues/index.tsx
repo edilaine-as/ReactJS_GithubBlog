@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { IssuesContext } from "../../contexts/IssuesContext";
 import { InfoPost, IssuesContainer, PostContainer, PostHeader } from "./styles";
 import { useParams } from 'react-router-dom';
+import { differenceBetweenDates } from "../../utils/differenceBetweenDates";
 
 export function Issues(){
     
-    const { issues, differenceBetweenDates } = useContext(IssuesContext)
+    const { issues } = useContext(IssuesContext)
     
     const [now, setNow] = useState(new Date());
 
@@ -14,8 +15,8 @@ export function Issues(){
     const selectedIssueId = id ? parseInt(id) : null;
     const selectedIssue = issues.find((issue) => issue.id === selectedIssueId);
 
-    //a data atual é atualizada a cada 30s
     useEffect(() => {
+        //a data atual é atualizada a cada 30s
         const interval = setInterval(() => {
             setNow(new Date());
         }, 30000);
