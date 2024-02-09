@@ -1,9 +1,10 @@
-import { CardContainer, HeaderProfile, HomeContainer, InfoProfile, ProfileContainer, ProfileContent, SearchContainer } from "./styles";
+import { CardContainer, HeaderProfile, HomeContainer, InfoProfile, ProfileContainer, ProfileContent } from "./styles";
 import { Card } from "../../components/Card";
 import { useContext, useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import { Link } from "react-router-dom";
 import { IssuesContext } from "../../contexts/IssuesContext";
+import { SearchIssues } from "./components/SearchIssues";
 
 interface Profile {
     id: number;
@@ -25,7 +26,7 @@ interface Card {
 
 export function Home(){
     const [profile, setProfile] = useState<Profile>();
-    const {issues, totalPosts} = useContext(IssuesContext)
+    const {issues} = useContext(IssuesContext)
     
     async function fetchProfile(){
         await api.get('users/josepholiveira')
@@ -73,13 +74,7 @@ export function Home(){
                 </ProfileContent>
             </ProfileContainer>
 
-            <SearchContainer>
-                <div>
-                    <h3>Publicações</h3>
-                    <span>{totalPosts} Publicações</span>
-                </div>
-                <input type="text" placeholder="Buscar conteúdo" />
-            </SearchContainer>
+            <SearchIssues/>
 
             <CardContainer>
                 {issues.map((issue) => (

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
     height: 296px;

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { mixins } from "../../styles/mixins";
 
 export const CardContainer = styled.div`
