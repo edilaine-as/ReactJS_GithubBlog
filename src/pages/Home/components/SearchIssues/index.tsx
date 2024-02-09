@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { SearchContainer } from "./styles"
 
 export function SearchIssues(){
-    const { totalPosts } = useContext(IssuesContext)
+    const { totalPosts, fetchIssuesRepository } = useContext(IssuesContext)
 
     return (
         <SearchContainer>
@@ -11,7 +11,15 @@ export function SearchIssues(){
                 <h3>Publicações</h3>
                 <span>{totalPosts} Publicações</span>
             </div>
-            <input type="text" placeholder="Buscar conteúdo" />
+            <input type="text" placeholder="Buscar conteúdo" 
+                onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                        const target = e.target as HTMLTextAreaElement
+                        const inputValue = target.value;
+                        fetchIssuesRepository(inputValue);
+                    }
+                }}
+            />
         </SearchContainer>
     )
 }

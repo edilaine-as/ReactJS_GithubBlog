@@ -16,6 +16,7 @@ interface Issue {
 interface IssueContextType {
     issues: Issue[]
     totalPosts: number
+    fetchIssuesRepository: (query?: string) => Promise<void>
 }
 
 interface IssuesProviderProps {
@@ -30,10 +31,11 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
     const [issues, setIssues] = useState<Issue[]>([]);
     const [totalPosts, setTotalPosts] = useState(0);
     
-    async function fetchIssuesRepository(){
+    async function fetchIssuesRepository(query?:string){
+        const url = query !== undefined? query + ' ' + 'repo:daltonmenezes/test' : 'repo:daltonmenezes/test'
         await api.get('search/issues', {
             params: {
-                q: 'repo:daltonmenezes/test'
+                q: url
             }
         })
         .then(response => {
@@ -64,6 +66,7 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
           value={{
             issues,
             totalPosts,
+            fetchIssuesRepository
           }}
         >
           {children}
