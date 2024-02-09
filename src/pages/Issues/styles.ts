@@ -29,10 +29,24 @@ export const PostHeader = styled.div`
         text-decoration: none;
         color: ${props => props.theme.blue};
         ${mixins.fonts.link};
+
+        display: flex;
+        gap: 8px;
+        align-items: center;
     }
 `
 
 export const InfoPost = styled.div`
     display: flex;
     gap: 32px;
+
+    div{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        svg{
+            color: ${props => props.theme["base-label"]};
+        }
+    }
 `

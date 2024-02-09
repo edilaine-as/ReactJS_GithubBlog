@@ -5,6 +5,9 @@ import { api } from "../../lib/axios";
 import { Link } from "react-router-dom";
 import { IssuesContext } from "../../contexts/IssuesContext";
 import { SearchIssues } from "./components/SearchIssues";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faBuilding, faUserGroup, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 interface Profile {
     id: number;
@@ -55,19 +58,25 @@ export function Home(){
                 <ProfileContent>
                     <HeaderProfile>
                         <h1>{profile?.name}</h1>
-                        <Link to={profile?.html_url ?? '/'} target="_blank">GitHub</Link>
+                        <Link to={profile?.html_url ?? '/'} target="_blank">
+                            GitHub
+                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                        </Link>
                     </HeaderProfile>
 
                     <p>{profile?.bio}</p>
 
                     <InfoProfile>
                         <div>
+                            <FontAwesomeIcon icon={faGithub} />
                             <span>{profile?.login}</span>
                         </div>
                         <div>
+                            <FontAwesomeIcon icon={faBuilding} />
                             <span>{profile?.company}</span>
                         </div>
                         <div>
+                            <FontAwesomeIcon icon={faUserGroup} />
                             <span>{profile?.followers} seguidores</span>
                         </div>
                     </InfoProfile>

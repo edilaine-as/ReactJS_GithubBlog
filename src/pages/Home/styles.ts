@@ -45,6 +45,10 @@ export const HeaderProfile = styled.div`
         text-decoration: none;
         color: ${props => props.theme.blue};
         ${mixins.fonts.link};
+
+        display: flex;
+        gap: 8px;
+        align-items: center;s
     }
 `
 
@@ -53,6 +57,16 @@ export const InfoProfile = styled.div`
 
     display: flex;
     gap: 24px;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        svg{
+            color: ${props => props.theme["base-label"]};
+        }
+    }
 `
 
 export const CardContainer = styled.div`
